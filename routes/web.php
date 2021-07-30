@@ -4,22 +4,22 @@ use App\Article;
 use Illuminate\Support\Facades\Route;
 
 app()->bind('example', function () {
-    return new \App\Example();
-});
-
-Route::get('/', function () {
-    $example = resolve('example');
-
-    ddd($example);
+	return new \App\Example();
 });
 
 // Route::get('/', function () {
-//     return view('welcome');
+//     $example = resolve('example');
+
+//     ddd($example);
 // });
 
+Route::get('/', function () {
+	return view('welcome');
+});
+
 Route::get('/about', function () {
-    $articles = Article::latest()->paginate(3);
-    return view('about', compact('articles'));
+	$articles = Article::latest()->paginate(3);
+	return view('about', compact('articles'));
 });
 
 Route::get('/articles', 'ArticleController@index')->name('articles.index');
